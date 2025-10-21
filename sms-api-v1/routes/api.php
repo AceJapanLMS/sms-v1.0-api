@@ -9,4 +9,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 // Standard REST resource routes for City
-Route::apiResource('city', CityController::class);
+Route::apiResource('city', CityController::class);//api/city
+//Route::apiResource('city', CityController::class);//api/city

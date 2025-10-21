@@ -14,6 +14,7 @@ class CityRepository implements CityRepositoryInterface
         //
     }
     public function getAll(){
+        //go to model
         return City::all();
     }
 
