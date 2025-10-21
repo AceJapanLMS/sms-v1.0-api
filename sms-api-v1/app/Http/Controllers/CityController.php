@@ -16,7 +16,7 @@ class CityController extends Controller
     {
         $this->cities = $cities;
     }
-
+    //api/city
     public function index(): JsonResponse
     {
         $data = $this->cities->getAll();
