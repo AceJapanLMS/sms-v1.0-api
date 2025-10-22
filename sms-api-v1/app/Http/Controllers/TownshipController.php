@@ -10,8 +10,10 @@ use Illuminate\Http\Request;
 
 class TownshipController extends Controller
 {
+    //declare interface
     protected TownshipRepositoryInterface $townships;
 
+    //create obj and save repositoryInterface
     public function __construct(TownshipRepositoryInterface $townships)
     {
         $this->townships = $townships;
@@ -20,6 +22,21 @@ class TownshipController extends Controller
     public function index(): JsonResponse
     {
         $data = $this->townships->getAll();
+        return ApiResponse::sendResponse($data, '', 200);
+    }
+
+    //api/township/{id}
+    public function show(string $id): JsonResponse
+    {
+        $data = $this->townships->getById($id);
+        return ApiResponse::sendResponse($data, '', 200);
+    }
+
+    // api/township/city_id/{city_id}
+    public function getByCity($city_id): JsonResponse
+    {
+    // Call repository method to get filtered data
+        $data = $this->townships->getByCity($city_id);
         return ApiResponse::sendResponse($data, '', 200);
     }
 
@@ -37,13 +54,6 @@ class TownshipController extends Controller
     public function store(Request $request): JsonResponse
     {
         //
-    }
-
-    //api/township/{id}
-    public function show(string $id): JsonResponse
-    {
-        $data = $this->townships->getById($id);
-        return ApiResponse::sendResponse($data, '', 200);
     }
 
     /**

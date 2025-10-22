@@ -24,6 +24,10 @@ class TownshipRepository implements TownshipRepositoryInterface
        return Township::findOrFail($id);
     }
 
+    public function getByCity($city_id){
+        return Township::where('city_id', $city_id)->get();
+    }
+
     public function create(array $data){
         return Township::create($data);
     }
