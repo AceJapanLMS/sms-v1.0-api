@@ -6,4 +6,5 @@ interface TownshipRepositoryInterface
 {
     public function getAll();
     public function getById($id);
+    public function getByCity($city_id);
 }

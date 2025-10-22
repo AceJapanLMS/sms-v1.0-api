@@ -11,8 +11,7 @@ Route::get('/user', function (Request $request) {
 
 // Standard REST resource routes for City
 Route::apiResource('city', CityController::class);//api/city
-
 //Standard REST resource routes for Township
 //api/township
 Route::apiResource('township', TownshipController::class);
-
+Route::get('township/city_id/{city_id}', [TownshipController::class, 'getbycity']);
