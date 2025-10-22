@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\TownshipController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -10,4 +11,8 @@ Route::get('/user', function (Request $request) {
 
 // Standard REST resource routes for City
 Route::apiResource('city', CityController::class);//api/city
-//Route::apiResource('city', CityController::class);//api/city
+
+//Standard REST resource routes for Township
+//api/township
+Route::apiResource('township', TownshipController::class);
+
