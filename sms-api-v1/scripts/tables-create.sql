@@ -7,7 +7,7 @@ CREATE TABLE school_infos(
     is_approved VARCHAR(255) default(0),
     city_id bigint unsigned NOT NULL,
     township_id bigint unsigned NOT NULL,
-    address_detail VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT NULL,
-    updated_at  TIMESTAMP DEFAULT NULL
+    address_detail TEXT NOT NULL,
+    created_at timestamp NULL DEFAULT NULL,
+    updated_at timestamp NULL DEFAULT NULL
 );
