@@ -65,15 +65,22 @@ HTTP Verb: GET
 }
 
 
-api/school/register
+[api/school/register](http://127.0.0.1:8000/api/schoolinfo)
 HTTP Verb: POST
+
+Header config
+Key:value
+Accept:application/json
+
 json body: 
 {
-'school_name':'TOP ONE',
-'school_level':'High School',
-'email':'user1@gmail.com',
-'phone':'0912345678910',
-'city_Id':3,
-'township_id':4,
-'address':'YGN'
+"school_name":"TOP ONE5",
+"school_level":"High School",
+"contact_email":"user5@gmail.com",
+"contact_phone_no":"0912345678910",
+"city_id":3,
+"township_id":4,
+"address_detail":"YGN"
 }
+
+
