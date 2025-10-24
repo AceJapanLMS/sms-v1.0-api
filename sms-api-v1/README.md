@@ -88,7 +88,7 @@ RESPONSE JSON BODY
     "data": true,
     "message": "School Info created"
 }
-
+//branch name : send_otp_api
 function name : send email as OTP to user's email 
 api/sendEmailOTP
 HTTP Verb : POST 
@@ -103,6 +103,7 @@ RESPONSE JSON BODY:
 "expired_at": "5 minutes"
 }
 
+//branch name : verify_otp_api
 function name : verify email OTP to complate registartion process 
 /api/verifyOTP
 HTTP Verb : POST 
@@ -113,7 +114,7 @@ REQUEST JSON BODY:
 "email" : "user1@gmail.com",
 "otp"   : "123456"
 }
-
+//branch name : define_usernewpassword_api
 function name : define user New password and store user table 
 api/setnewuserPassword
 HTTP Verb : POST
@@ -126,7 +127,7 @@ REQUEST JSON BODY:
 "confirm_password"   : "123456"
 }
 
-
+//branch name : user_login_api
 function name : sign for user login
 api/sign
 HTTP Verb : POST
