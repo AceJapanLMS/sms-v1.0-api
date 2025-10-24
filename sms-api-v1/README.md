@@ -114,6 +114,11 @@ REQUEST JSON BODY:
 "email" : "user1@gmail.com",
 "otp"   : "123456"
 }
+// checking logic psudocode 
+if(check opt and email) from this Query table school_users
+then verify success 
+else verify failed 
+================================================================================================================
 //branch name : define_usernewpassword_api
 function name : define user New password and store user table 
 api/setnewuserPassword
@@ -126,7 +131,8 @@ REQUEST JSON BODY:
 "password"   : "123456",
 "confirm_password"   : "123456"
 }
-
+Query table reference : school_users
+================================================================================================================
 //branch name : user_login_api
 function name : sign for user login
 api/sign
@@ -138,4 +144,6 @@ REQUEST JSON BODY:
 "email" : "user1@gmail.com",
 "password"   : "123456",
 }
+Query table reference : school_users
+================================================================================================================
 
