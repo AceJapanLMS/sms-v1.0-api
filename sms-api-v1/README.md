@@ -65,7 +65,7 @@ HTTP Verb: GET
 }
 
 
-[api/school/register](http://127.0.0.1:8000/api/schoolinfo)
+(http://127.0.0.1:8000/api/schoolinfo)
 HTTP Verb: POST
 
 Header config
@@ -83,4 +83,53 @@ json body:
 "address_detail":"YGN"
 }
 
+
+function name : send email as OTP to user's email 
+api/sendEmailOTP
+HTTP Verb : POST 
+Header Key:value
+Accept:application/json
+RESPONSE JSON BODY: 
+{
+"status":"School Info register is completed for {school_name}",
+"school_name":"TOP ONE",
+"email" : "user1@gmail.com",
+"otp"   : "123456",
+"expired_at": "5 minutes"
+}
+
+function name : verify email OTP to complate registartion process 
+/api/verifyOTP
+HTTP Verb : POST 
+Header Key:value
+Accept:application/json
+REQUEST JSON BODY: 
+{
+"email" : "user1@gmail.com",
+"otp"   : "123456"
+}
+
+function name : define user New password and store user table 
+api/setnewuserPassword
+HTTP Verb : POST
+Header Key:value
+Accept:application/json
+REQUEST JSON BODY: 
+{
+"email" : "user1@gmail.com",
+"password"   : "123456",
+"confirm_password"   : "123456"
+}
+
+
+function name : sign for user login
+api/sign
+HTTP Verb : POST
+Header Key:value
+Accept:application/json
+REQUEST JSON BODY: 
+{
+"email" : "user1@gmail.com",
+"password"   : "123456",
+}
 
