@@ -30,11 +30,11 @@ class SchoolInfoController extends Controller
     {
         $schoolinfo = $this->schoolinfos->create($request->validated());
         //dd($schoolinfo);
-        if(!empty($schoolinfo)){
+        if($schoolinfo){
             return ApiResponse::sendResponse($schoolinfo,'School Info created',201);
         }
         else{
-            return ApiResponse::sendResponseFailed($schoolinfo,'Already existed');
+            return ApiResponse::sendResponseFailed(null,'Already existed');
         }
     }
     /**
@@ -49,11 +49,11 @@ class SchoolInfoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    // public function update(StoreSchoolInfoRequest $request, string $id)
-    // {
-    //     $schoolinfo = $this->schoolinfos->create($request->validated());
-    //     return ApiResponse::sendResponse($schoolinfo,'School Info updated',200);
-    // }
+    public function update(StoreSchoolInfoRequest $request, string $id)
+    {
+        $schoolinfo = $this->schoolinfos->update($request->validated());
+        return ApiResponse::sendResponse($schoolinfo,'School Info updated',200);
+    }
 
     /**
      * Remove the specified resource from storage.

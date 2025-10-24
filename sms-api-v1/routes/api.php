@@ -16,8 +16,4 @@ Route::apiResource('city', CityController::class);//api/city
 //api/township
 Route::apiResource('township', TownshipController::class);
 Route::get('township/city_id/{city_id}', [TownshipController::class, 'getbycity']);
-//Route::post('schoolinfo/register', [SchoolInfoController::class, 'store']);
 Route::apiResource('schoolinfo', SchoolInfoController::class);
-
-
-//Route::post('/submit-form', [YourController::class, 'store'])->name('form.submit');

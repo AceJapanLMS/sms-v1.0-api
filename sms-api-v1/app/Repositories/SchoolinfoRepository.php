@@ -13,11 +13,22 @@ class SchoolInfoRepository implements SchoolInfoRepositoryInterface{
     public function getById($id){
         return SchoolInfo::findOrFail($id);
     }
-
     public function create(array $data){
         try {
-            return $schoolinfo = SchoolInfo::create($data);
+            $schoolInfo = SchoolInfo::where('school_name',$data['school_name'])
+            ->orwhere('contact_email',$data['contact_email'])
+            ->first();
 
+            Log::info('SchoolInfo query result:', ['data' => $schoolInfo]);
+
+        if($schoolInfo){
+            //already exist
+            return false;
+        }
+        else{
+            SchoolInfo::create($data);
+            return true;
+        }
         } catch (Throwable $e) {
             report($e);
 
