@@ -65,7 +65,7 @@ HTTP Verb: GET
 }
 
 
-[api/school/register](http://127.0.0.1:8000/api/schoolinfo)
+(http://127.0.0.1:8000/api/schoolinfo)
 HTTP Verb: POST
 
 Header config
