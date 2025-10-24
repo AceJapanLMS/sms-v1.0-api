@@ -90,6 +90,11 @@ RESPONSE JSON BODY
 }
 //branch name : send_otp_api
 function name : send email as OTP to user's email 
+send otp email api 
+1) send otp email for mobile register process
+2) add user email  , password and school_info_id into users table 
+3) add record school_users 
+
 api/sendEmailOTP
 HTTP Verb : POST 
 Header Key:value
