@@ -72,7 +72,7 @@ Header config
 Key:value
 Accept:application/json
 
-json body: 
+REQUEST json body: 
 {
 "school_name":"TOP ONE5",
 "school_level":"High School",
@@ -82,7 +82,12 @@ json body:
 "township_id":4,
 "address_detail":"YGN"
 }
-
+RESPONSE JSON BODY
+{
+    "success": true,
+    "data": true,
+    "message": "School Info created"
+}
 
 function name : send email as OTP to user's email 
 api/sendEmailOTP
