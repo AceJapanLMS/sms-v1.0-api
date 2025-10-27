@@ -110,7 +110,7 @@ RESPONSE JSON BODY:
 
 //branch name : verify_otp_api
 function name : verify email OTP to complate registartion process 
-/api/verifyOTP
+/api/verifyotp
 HTTP Verb : POST 
 Header Key:value
 Accept:application/json
@@ -126,7 +126,7 @@ else verify failed
 ================================================================================================================
 //branch name : define_usernewpassword_api
 function name : define user New password and store user table 
-api/setnewuserPassword
+api/setnewuserpassword
 HTTP Verb : POST
 Header Key:value
 Accept:application/json
