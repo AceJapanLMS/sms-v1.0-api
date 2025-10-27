@@ -35,8 +35,10 @@ class SchoolInfoController extends Controller
     public function store(StoreSchoolInfoRequest $request): JsonResponse
     {
         $result = $this->schoolinfos->create($request->validated());
-        if($result === false){
-            return ApiResponse::sendResponseFailed(null,'Already Existed');
+        
+        // Check for validation errors from repository
+        if (is_array($result) && isset($result['error'])) {
+            return ApiResponse::sendResponseFailed(null, $result['error']);
         }
         
         // Save OTP and get SchoolUser instance
