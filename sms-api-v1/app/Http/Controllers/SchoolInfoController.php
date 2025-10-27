@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSchoolInfoRequest;
 use App\Interfaces\SchoolInfoRepositoryInterface;
+use App\Http\Requests\UpdateSchoolInfoRequest;
 use App\Responses\ApiResponse;
 use Illuminate\Http\JsonResponse;
 
@@ -29,12 +30,11 @@ class SchoolInfoController extends Controller
     public function store(StoreSchoolInfoRequest $request): JsonResponse
     {
         $schoolinfo = $this->schoolinfos->create($request->validated());
-        //dd($schoolinfo);
         if($schoolinfo){
-            return ApiResponse::sendResponse($schoolinfo,'School Info created',201);
+            return ApiResponse::sendResponse($schoolinfo,'School Info Created',201);
         }
         else{
-            return ApiResponse::sendResponseFailed(null,'Already existed');
+            return ApiResponse::sendResponseFailed(null,'Already Existed');
         }
     }
     /**
@@ -49,9 +49,9 @@ class SchoolInfoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreSchoolInfoRequest $request, string $id)
+    public function update(UpdateSchoolInfoRequest $request, string $id): JsonResponse
     {
-        $schoolinfo = $this->schoolinfos->update($request->validated());
+        $schoolinfo = $this->schoolinfos->update($id, $request->validated());
         return ApiResponse::sendResponse($schoolinfo,'School Info updated',200);
     }
 
