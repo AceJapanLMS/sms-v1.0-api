@@ -11,7 +11,9 @@ class SchoolUser extends Model
     use HasFactory;
 
     protected $fillable = [
+        'school_info_id',
         'email',
         'otp',
+        'expired_at'
     ];
 }

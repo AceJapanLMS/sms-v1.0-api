@@ -25,8 +25,8 @@ class SchoolInfoRepository implements SchoolInfoRepositoryInterface{
             return false;
         }
         else{
-            SchoolInfo::create($data);
-            return true;
+            $newSchoolInfo = SchoolInfo::create($data);
+            return $newSchoolInfo;
         }
         } catch (Throwable $e) {
             report($e);

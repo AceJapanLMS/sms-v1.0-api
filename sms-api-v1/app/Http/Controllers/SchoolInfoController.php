@@ -4,16 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSchoolInfoRequest;
 use App\Interfaces\SchoolInfoRepositoryInterface;
+use App\Interfaces\SendOtpEmailRepositoryInterface;
 use App\Http\Requests\UpdateSchoolInfoRequest;
+use App\Mail\OtpMail;
 use App\Responses\ApiResponse;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Mail;
 
 class SchoolInfoController extends Controller
 {
     protected SchoolInfoRepositoryInterface $schoolinfos;
+    protected SendOtpEmailRepositoryInterface $sendOtpEmailRepository;
 
-    public function __construct(SchoolInfoRepositoryInterface $schoolinfos){
+    public function __construct(SchoolInfoRepositoryInterface $schoolinfos, SendOtpEmailRepositoryInterface $sendOtpEmailRepository){
         $this->schoolinfos = $schoolinfos;
+        $this->sendOtpEmailRepository = $sendOtpEmailRepository;
     }
     /**
      * Display a listing of the resource.
@@ -29,13 +34,30 @@ class SchoolInfoController extends Controller
      */
     public function store(StoreSchoolInfoRequest $request): JsonResponse
     {
-        $schoolinfo = $this->schoolinfos->create($request->validated());
-        if($schoolinfo){
-            return ApiResponse::sendResponse($schoolinfo,'School Info Created',201);
-        }
-        else{
+        $result = $this->schoolinfos->create($request->validated());
+        if($result === false){
             return ApiResponse::sendResponseFailed(null,'Already Existed');
         }
+        
+        // Save OTP and get SchoolUser instance
+        $schoolUser = $this->sendOtpEmailRepository->saveSchoolUser([
+            'school_info_id' => $result->id,
+            'email' => $result->contact_email
+        ]);
+        
+        // Prepare mail data
+        $mailData = [
+            'title' => 'Verify OTP for the school registration process',
+            'otp' => $schoolUser->otp,
+            'school_name' => $result->school_name
+        ];
+        
+        // Send OTP email
+        Mail::to($result->contact_email)->send(new OtpMail($mailData));
+        
+        // Return response without exposing the OTP
+        $result->otp_expires_at = $schoolUser->expired_at;
+        return ApiResponse::sendResponse($result, 'School Info Created and OTP sent to email', 201);
     }
     /**
      * Display the specified resource.

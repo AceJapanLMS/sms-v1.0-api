@@ -11,6 +11,8 @@ use App\Interfaces\SchoolInfoRepositoryInterface;
 use App\Repositories\SchoolInfoRepository;
 use App\Interfaces\SchoolUserRepositoryInterface;
 use App\Repositories\SchoolUserRepository;
+use App\Interfaces\SendOtpEmailRepositoryInterface;
+use App\Repositories\SendOtpEmailRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(TownshipRepositoryInterface::class,TownshipRepository::class);
         $this->app->bind(SchoolInfoRepositoryInterface::class,SchoolInfoRepository::class);
         $this->app->bind(SchoolUserRepositoryInterface::class,SchoolUserRepository::class);
+         $this->app->bind(SendOtpEmailRepositoryInterface::class,SendOtpEmailRepository::class);
     }
     /**
      * Bootstrap services.
