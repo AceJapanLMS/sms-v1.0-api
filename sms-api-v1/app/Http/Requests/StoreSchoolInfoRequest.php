@@ -27,7 +27,7 @@ class StoreSchoolInfoRequest extends FormRequest
         'school_name'       => 'required|string|max:255',
         'school_level'      => 'required|string|max:255',
         'contact_phone_no'  => 'required|string|max:255',
-        'contact_email'     => 'required|email|max:255',
+        'contact_email'     => 'required|email:rfc,dns|max:255',
         'city_id'           => 'required|integer',
         'township_id'       => 'required|integer',
         'address_detail'    => 'required|string|max:255',
