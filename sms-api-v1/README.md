@@ -143,9 +143,9 @@ Header Key:value
 Accept:application/json
 REQUEST JSON BODY: 
 {
-"email" : "user1@gmail.com",
-"password"   : "123456",
-"confirm_password"   : "123456"
+    "email": "akog0230@gmail.com",
+    "password": "1",
+    "confirm_password": "aaaaaa"
 }
 Query table reference : school_users
 ================================================================================================================
