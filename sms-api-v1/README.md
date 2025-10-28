@@ -5,6 +5,7 @@ mysql 8.5
 api generate 
 port:api/city/{1}
 HTTP Verb: GET 
+```
 {
 "success": true,
 "data": [
@@ -40,10 +41,12 @@ HTTP Verb: GET
 }
 ]
 }
+```
 township api
 api generate 
 port:api/township/
 HTTP Verb: GET 
+```
 {
 "success": true,
 "data": [
@@ -63,8 +66,7 @@ HTTP Verb: GET
 }
 ]
 }
-
-
+```
 (http://127.0.0.1:8000/api/schoolinfo)
 HTTP Verb: POST
 
@@ -73,6 +75,7 @@ Key:value
 Accept:application/json
 
 REQUEST json body: 
+```
 {
 "school_name":"TOP ONE5",
 "school_level":"High School",
@@ -82,12 +85,15 @@ REQUEST json body:
 "township_id":4,
 "address_detail":"YGN"
 }
+```
 RESPONSE JSON BODY
+```
 {
     "success": true,
     "data": true,
     "message": "School Info created"
 }
+```
 //branch name : send_otp_api
 function name : send email as OTP to user's email 
 send otp email api 
@@ -100,6 +106,7 @@ HTTP Verb : POST
 Header Key:value
 Accept:application/json
 RESPONSE JSON BODY: 
+```
 {
 "status":"School Info register is completed for {school_name}",
 "school_name":"TOP ONE",
@@ -107,6 +114,7 @@ RESPONSE JSON BODY:
 "otp"   : "123456",
 "expired_at": "5 minutes"
 }
+```
 //branch name : send_otp
 function name : verify email OTP to complate registartion process 
 /api/sendotp
@@ -114,10 +122,12 @@ HTTP Verb : POST
 Header Key:value
 Accept:application/json
 REQUEST JSON BODY: 
+```
 {
 "email" : "user1@gmail.com",
 "school_name":'TOP ONE'
 }
+```
 ================================================================================================================
 //branch name : verify_otp_api
 function name : verify email OTP to complate registartion process 
@@ -126,10 +136,12 @@ HTTP Verb : POST
 Header Key:value
 Accept:application/json
 REQUEST JSON BODY: 
+```
 {
 "email" : "user1@gmail.com",
 "otp"   : "123456"
 }
+```
 // checking logic psudocode 
 if(check opt and email) from this Query table school_users
 then verify success 
@@ -158,10 +170,12 @@ HTTP Verb : POST
 Header Key:value
 Accept:application/json
 REQUEST JSON BODY: 
+```
 {
 "email" : "user1@gmail.com",
 "password"   : "123456",
 }
+```
 Query table reference : school_users,school_infos.is_approved=1
 select u.id,u.email,si.is_approved from school_users u
 inner join school_infos si on u.school_info_id=si.id
