@@ -95,7 +95,7 @@ send otp email api
 2) add user email  , password and school_info_id into users table 
 3) add record school_users 
 
-api/sendEmailOTP
+api/schoolinfo
 HTTP Verb : POST 
 Header Key:value
 Accept:application/json
@@ -107,7 +107,18 @@ RESPONSE JSON BODY:
 "otp"   : "123456",
 "expired_at": "5 minutes"
 }
-
+//branch name : send_otp
+function name : verify email OTP to complate registartion process 
+/api/sendotp
+HTTP Verb : POST 
+Header Key:value
+Accept:application/json
+REQUEST JSON BODY: 
+{
+"email" : "user1@gmail.com",
+"school_name":'TOP ONE'
+}
+================================================================================================================
 //branch name : verify_otp_api
 function name : verify email OTP to complate registartion process 
 /api/verifyotp
@@ -138,8 +149,8 @@ REQUEST JSON BODY:
 }
 Query table reference : school_users
 ================================================================================================================
-//branch name : user_login_api
-function name : sign for user login
+//branch name : user_sign_api
+function name : sign with user name and password
 api/sign
 HTTP Verb : POST
 Header Key:value
@@ -149,6 +160,88 @@ REQUEST JSON BODY:
 "email" : "user1@gmail.com",
 "password"   : "123456",
 }
-Query table reference : school_users
+Query table reference : school_users,school_infos.is_approved=1
+select u.id,u.email,si.is_approved from school_users u
+inner join school_infos si on u.school_info_id=si.id
+where si.is_approved=1
 ================================================================================================================
-
+branch name: dashboard_noticeboard_api
+function name: dashboard/noticeboard for admin user
+secured api
+api/dashboard/noticeboard
+HTTP Verb : GET
+Header Key:value
+Accept:application/json
+RESPONSE JSON BODY: 
+{
+ "success": true,
+    "data": [
+        "today":[
+            {
+                "notice":"ကျောင်းသားမိဘ စုံညီတွေ့ဆုံပွဲ",
+                "from_date:'2025-10-28 08:48:36',
+                "to_date":'2025-10-28 23:48:36',
+                "grade_id":NULL,
+                "grade_name":NULL
+            },
+            {
+                "notice":"Chemical Test",
+                "from_date:'2025-10-28 08:48:36',
+                "to_date":'2025-10-28 23:48:36',
+                "grade_id":11,
+                "grade_name":Grade11
+            }
+        ],
+        "upcomming":[
+            {
+                "notice":"Student Grading",
+                "from_date:'2025-10-28 08:48:36',
+                "to_date":'2025-10-28 23:48:36',
+                "grade_id":12,
+                "grade_name":Grade12
+            },
+            {
+                "notice":"Revision for BIO Subject",
+                "from_date:'2025-10-29 08:48:36',
+                "to_date":'2025-10-30 23:48:36',
+                "grade_id":12,
+                "grade_name":Grade12
+            },
+            {
+                "notice":"Revision for MATH Subject",
+                "from_date:'2025-10-29 08:48:36',
+                "to_date":'2025-10-30 23:48:36',
+                "grade_id":12,
+                "grade_name":Grade12
+            }     
+        ]
+    ]
+}
+Query table reference : notices 
+===========================================================================================================
+branch name: dashboard_myschool_api
+function name: dashboard/my school for admin user
+secured api
+api/dashboard/notice_board
+HTTP Verb : GET
+Header Key:value
+Accept:application/json
+RESPONSE JSON BODY: 
+===========================================================================================================
+branch name: dashboard_attendance_api
+function name: dashboard/attendance for admin user
+secured api
+api/dashboard/notice_board
+HTTP Verb : GET
+Header Key:value
+Accept:application/json
+RESPONSE JSON BODY: 
+===========================================================================================================
+branch name: dashboard_grading_api
+function name: dashboard/grading for admin user
+secured api
+api/dashboard/notice_board
+HTTP Verb : GET
+Header Key:value
+Accept:application/json
+RESPONSE JSON BODY: 
