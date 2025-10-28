@@ -142,11 +142,13 @@ HTTP Verb : POST
 Header Key:value
 Accept:application/json
 REQUEST JSON BODY: 
+```
 {
     "email": "akog0230@gmail.com",
     "password": "1",
     "confirm_password": "aaaaaa"
 }
+```
 Query table reference : school_users
 ================================================================================================================
 //branch name : user_sign_api
