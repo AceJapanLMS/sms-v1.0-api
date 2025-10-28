@@ -175,6 +175,7 @@ HTTP Verb : GET
 Header Key:value
 Accept:application/json
 RESPONSE JSON BODY: 
+```
 {
  "success": true,
     "data": [
@@ -219,6 +220,7 @@ RESPONSE JSON BODY:
         ]
     ]
 }
+```
 Query table reference : notices 
 ===========================================================================================================
 branch name: dashboard_myschool_api
