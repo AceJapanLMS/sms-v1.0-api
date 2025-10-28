@@ -23,27 +23,24 @@ class SchoolInfoRepository implements SchoolInfoRepositoryInterface {
         try {
             // Verify email validity
             if (!$this->emailVerificationService->isValidEmail($data['contact_email'])) {
-                Log::error('Invalid email domain:', ['email' => $data['contact_email']]);
                 return ['error' => 'Invalid email domain. Please use a valid email address.'];
             }
-
             // Check for disposable email
             if ($this->emailVerificationService->isDisposableEmail($data['contact_email'])) {
-                Log::error('Disposable email detected:', ['email' => $data['contact_email']]);
                 return ['error' => 'Disposable email addresses are not allowed.'];
             }
+            // Check for existing school name or email
+            // $schoolInfo = SchoolInfo::where('school_name',$data['school_name'])
+            //     ->orWhere('contact_email',$data['contact_email'])
+            //     ->first();
 
-            $schoolInfo = SchoolInfo::where('school_name',$data['school_name'])
-                ->orWhere('contact_email',$data['contact_email'])
-                ->first();
-
-            Log::info('SchoolInfo query result:', ['data' => $schoolInfo]);
+             // Check for existing only email field
+            $schoolInfo = SchoolInfo::where('contact_email',$data['contact_email'])->first();
 
             if($schoolInfo){
                 //already exist
                 return ['error' => 'School name or email already exists.'];
-            }
-            
+            }         
             $newSchoolInfo = SchoolInfo::create($data);
             return $newSchoolInfo;
         } catch (Throwable $e) {
