@@ -6,7 +6,7 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\TownshipController;
 use App\Http\Controllers\SchoolInfoController;
 use App\Http\Controllers\OtpController;
-use App\HTTP\Controllers\UserPasswordController;
+use App\Http\Controllers\UserPasswordController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
