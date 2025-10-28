@@ -14,6 +14,8 @@ class SchoolUser extends Model
         'school_info_id',
         'email',
         'otp',
-        'expired_at'
+        'expired_at',
+        'password'
     ];
+    protected $hidden = ['otp', 'password'];
 }

@@ -6,6 +6,8 @@ use App\Interfaces\SchoolUserRepositoryInterface;
 use App\Models\SchoolUser;
 use App\Models\SchoolInfo;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
+use Throwable;
 
 class SchoolUserRepository implements SchoolUserRepositoryInterface
 {
@@ -33,6 +35,21 @@ class SchoolUserRepository implements SchoolUserRepositoryInterface
         } catch (Throwable $e) {
             report($e);
             return null;
+        }
+    }
+
+    public function setNewPassword(array $data){
+        try{
+            $user = SchoolUser::where('email',$data['email'])->first();
+            if(!$user){
+                return ['status' => false, 'message' => 'User Not Found'];
+            }
+            $user->password = Hash::make($data['password']);
+            $user->save();
+            return ['status' => true,'data' => $user];
+        }catch(Throwable $e){
+            report($e);
+            return ['status' => false] ;
         }
     }
 }
