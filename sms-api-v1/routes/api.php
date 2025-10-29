@@ -7,6 +7,7 @@ use App\Http\Controllers\TownshipController;
 use App\Http\Controllers\SchoolInfoController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\UserPasswordController;
+use App\Http\Controllers\SignInController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -21,3 +22,4 @@ Route::get('township/city_id/{city_id}', [TownshipController::class, 'getbycity'
 Route::apiResource('schoolinfo', SchoolInfoController::class);
 Route::post('verifyotp', [OtpController::class, 'store']);
 Route::post('setnewuserpassword',[UserPasswordController::class, 'setNewUserPassword']);
+Route::post('sign',[SignInController::class, 'sign']);

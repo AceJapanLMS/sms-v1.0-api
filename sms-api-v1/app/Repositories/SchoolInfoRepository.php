@@ -40,7 +40,7 @@ class SchoolInfoRepository implements SchoolInfoRepositoryInterface {
             if($schoolInfo){
                 //already exist
                 return ['error' => 'School name or email already exists.'];
-            }         
+            }
             $newSchoolInfo = SchoolInfo::create($data);
             return $newSchoolInfo;
         } catch (Throwable $e) {
