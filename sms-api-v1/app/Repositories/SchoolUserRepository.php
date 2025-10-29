@@ -41,6 +41,7 @@ class SchoolUserRepository implements SchoolUserRepositoryInterface
     public function setNewPassword(array $data){
         try{
             $user = SchoolUser::where('email',$data['email'])->first();
+            log::info('Set New Password query result:', ['data' => $user]);
             if(!$user){
                 return ['status' => false, 'message' => 'User Not Found'];
             }
