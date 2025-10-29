@@ -165,7 +165,7 @@ Query table reference : school_users
 ================================================================================================================
 //branch name : user_sign_api
 function name : sign with user name and password
-api/sign
+api/signin
 HTTP Verb : POST
 Header Key:value
 Accept:application/json
