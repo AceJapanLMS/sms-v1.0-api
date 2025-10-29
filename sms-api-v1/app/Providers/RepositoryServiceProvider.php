@@ -25,7 +25,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(TownshipRepositoryInterface::class,TownshipRepository::class);
         $this->app->bind(SchoolInfoRepositoryInterface::class,SchoolInfoRepository::class);
         $this->app->bind(SchoolUserRepositoryInterface::class,SchoolUserRepository::class);
-         $this->app->bind(SendOtpEmailRepositoryInterface::class,SendOtpEmailRepository::class);
+        $this->app->bind(SendOtpEmailRepositoryInterface::class,SendOtpEmailRepository::class);
     }
     /**
      * Bootstrap services.

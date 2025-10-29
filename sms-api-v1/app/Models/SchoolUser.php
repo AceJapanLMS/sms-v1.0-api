@@ -17,5 +17,10 @@ class SchoolUser extends Model
         'expired_at',
         'password'
     ];
-    protected $hidden = ['otp', 'password'];
+    //protected $hidden = ['otp', 'password'];
+    protected $hidden = ['otp'];
+    public function schoolInfo()
+    {
+        return $this->belongsTo(SchoolInfo::class, 'school_info_id');
+    }
 }
