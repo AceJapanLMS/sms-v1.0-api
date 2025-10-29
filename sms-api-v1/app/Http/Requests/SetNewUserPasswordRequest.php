@@ -12,13 +12,8 @@ class SetNewUserPasswordRequest extends FormRequest{
         return [
             'email'             => 'required|string|max:255',
             'password'          => 'required|string|max:255',
-            'confirm_password'  => 'required|same:password',
+            'confirm_password'  => 'required|string|max:255',
         ];
     }
 
-    public function messages(): array{
-        return [
-            'confirm_password.same' => 'Password and Confirm Password do not match',
-        ];
-    }
 }
