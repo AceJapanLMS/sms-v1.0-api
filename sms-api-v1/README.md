@@ -165,7 +165,7 @@ REQUEST JSON BODY:
 "email" : "user1@gmail.com",
 "password"   : "123456",
 "is_remember_me":true,
-"signin_attempt":0
+"signin_attempts":0
 }
 ```
 Query table reference : school_users,school_infos.is_approved=1
@@ -261,6 +261,13 @@ api/roles
 api/userProfile
 ===========================================================================================================
 api/forgotpassword
+===========================================================================================================
+api/changepassword
+{
+    "current_password":"xxxxxx",
+    "new_password":"xyz123",
+    "confirm_password":"xyz123"
+}
 ===========================================================================================================
 api/logout
 ===========================================================================================================
