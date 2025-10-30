@@ -27,3 +27,8 @@ CREATE TABLE school_users(
     FOREIGN KEY (school_info_id) REFERENCES school_infos(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+
+ALTER TABLE school_users ADD is_remember_me TINYINT DEFAULT(0);
+ALTER TABLE  school_users ADD signin_attempts INT DEFAULT(0);
+ALTER TABLE  school_users ADD is_locked BIT DEFAULT(FALSE);

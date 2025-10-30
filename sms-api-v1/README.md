@@ -1,7 +1,7 @@
-
 php 8.3
 laravlel 11.0
 mysql 8.5
+===========================================================================================================
 api generate 
 port:api/city/{1}
 HTTP Verb: GET 
@@ -14,30 +14,6 @@ HTTP Verb: GET
 "city_name": "Yangon",
 "created_at": "2025-06-16T15:12:08.000000Z",
 "updated_at": "2025-06-16T15:12:08.000000Z"
-},
-{
-"id": 4,
-"city_name": "Mandalay",
-"created_at": "2025-06-16T15:12:25.000000Z",
-"updated_at": "2025-06-16T15:12:25.000000Z"
-},
-{
-"id": 5,
-"city_name": "Naypyitaw",
-"created_at": "2025-06-16T15:42:21.000000Z",
-"updated_at": "2025-06-16T15:42:21.000000Z"
-},
-{
-"id": 6,
-"city_name": "Mawlamyine",
-"created_at": "2025-06-17T02:53:30.000000Z",
-"updated_at": "2025-07-04T08:40:34.000000Z"
-},
-{
-"id": 7,
-"city_name": "MyintKyiNar",
-"created_at": "2025-07-04T08:35:59.000000Z",
-"updated_at": "2025-07-04T08:35:59.000000Z"
 }
 ]
 }
@@ -128,7 +104,7 @@ REQUEST JSON BODY:
 "school_name":'TOP ONE'
 }
 ```
-========================
+===========================================================================================================
 //branch name : re_send_otp
 function name : verify email OTP to complate registartion process
 /api/resendotp
@@ -188,6 +164,8 @@ REQUEST JSON BODY:
 {
 "email" : "user1@gmail.com",
 "password"   : "123456",
+"is_remember_me":true,
+"signin_attempt":0
 }
 ```
 Query table reference : school_users,school_infos.is_approved=1
@@ -277,3 +255,33 @@ HTTP Verb : GET
 Header Key:value
 Accept:application/json
 RESPONSE JSON BODY: 
+===========================================================================================================
+api/roles
+===========================================================================================================
+api/userProfile
+===========================================================================================================
+api/forgotpassword
+===========================================================================================================
+api/logout
+===========================================================================================================
+secured api
+api/teacher
+```
+{
+"profile_image": "base64 format", 
+"name":"Tr. Min Min",
+"nrc":"12/Nataka(N)9517536452,
+"brithday":"2025-10-10",
+"phone":"09852963741",
+"address","YGN",
+"teacher_level":"Founder",
+"role":"Teacher",
+"education":"BED",
+"teacher_fees":800000,
+"username":"MG",
+"password":"987654"
+}
+```
+===========================================================================================================
+web app side
+enable web user for mobile (admin control)
