@@ -22,8 +22,8 @@ class ReSendOTPRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'school_name'       => 'required|string|max:255',
-            'email'     => 'required|string|max:255'
+            'school_name'=> 'required|string|max:255',
+            'email'=> 'required|string|max:255'
         ];
     }
 }

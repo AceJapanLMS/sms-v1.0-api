@@ -65,44 +65,46 @@ class SchoolUserRepository implements SchoolUserRepositoryInterface
 
     public function sign(array $data){
         try{
-            $userEmail = SchoolUser::where('email', $data['email'])
-            ->first();
-            if(!$userEmail){
+            // Ensure the user exists
+            $user = SchoolUser::where('email', $data['email'])->first();
+            if (!$user) {
                 return [
                     'status' => false,
                     'message' => 'User Not Found',
                 ];
             }
 
-            $hash_password = Hash::make($data['password']);
-            $user = SchoolUser::join('school_infos', 'school_users.school_info_id', '=', 'school_infos.id')
-                    ->where('school_users.email', $data['email'])
-                    ->where('school_infos.is_approved', 1)
-                    ->select('school_users.id', 'school_users.email', 'school_infos.is_approved', 'school_users.password')
-                    ->first();
-                    Log::info('Sign in Result ', ['data' => $user]);
-                    if(!$user){
-                        return [
-                            'status' => false,
-                            'message' => 'Invalid email or password or school not approved'
-                        ];
-                    }
-                    if (!Hash::check($data['password'], $user->password)) {
-                        return [
-                            'status' => false,
-                            'message' => 'Invalid password'
-                        ];
-                    }
-                    else{
-                            return [
-                                'status' => true,
-                                'messsge' => 'User login scuuessfully',
-                                'data' => $user
-                            ];
-                    }
+            // Ensure the associated school is approved
+            $schoolInfo = SchoolInfo::find($user->school_info_id);
+            if (! $schoolInfo || $schoolInfo->is_approved != 1) {
+                return [
+                    'status' => false,
+                    'message' => 'Invalid email or password or school not approved',
+                ];
+            }
+
+            // Verify password
+            if (! Hash::check($data['password'], $user->password)) {
+                return [
+                    'status' => false,
+                    'message' => 'Invalid password',
+                ];
+            }
+
+            // Create a Sanctum token for API auth
+            $token = $user->createToken('api-token')->plainTextToken;
+
+            return [
+                'status' => true,
+                'message' => 'User login successfully',
+                'data' => [
+                    'user' => $user,
+                    'token' => $token,
+                ],
+            ];
         }catch(Throwable $e){
             report($e);
-            return false;
+            return ['status' => false, 'message' => 'Server error'];
         }
     }
 

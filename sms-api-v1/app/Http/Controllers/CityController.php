@@ -11,16 +11,15 @@ use Illuminate\Support\Facades\Log;
 class CityController extends Controller
 {
     protected CityRepositoryInterface $cities;
-
     public function __construct(CityRepositoryInterface $cities)
     {
         $this->cities = $cities;
     }
+
     //api/city
     public function index(): JsonResponse
     {
         $data = $this->cities->getAll();
-        Log::info('OTP verify query result:');
         return ApiResponse::sendResponse($data, '', 200);
     }
 

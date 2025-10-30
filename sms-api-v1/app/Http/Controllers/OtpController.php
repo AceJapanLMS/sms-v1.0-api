@@ -12,9 +12,11 @@ use Illuminate\Support\Facades\Log;
 class OtpController extends Controller
 {
     protected SchoolUserRepositoryInterface $schoolusers;
+    
     public function __construct(SchoolUserRepositoryInterface $schoolusers){
         $this->schoolusers = $schoolusers;
     }
+    
     public function store(VerifyOtpRequest $request): JsonResponse{
         $verified = $this->schoolusers->verifyOtp($request->validated());
         //Log::info('OTP verify query result:', ['verified' => $verified]);
