@@ -18,7 +18,7 @@ class MailController extends Controller
     protected SchoolUserRepositoryInterface $schoolUserRepository;
 
     public function __construct(SchoolInfoRepositoryInterface $schoolInfoRepository, SendOtpEmailRepositoryInterface $sendOtpEmailRepository, SchoolUserRepositoryInterface $schoolUserRepository){
-        $this->$schoolInfoRepository = $schoolInfoRepository;
+        $this->schoolInfoRepository = $schoolInfoRepository;
         $this->sendOtpEmailRepository = $sendOtpEmailRepository;
         $this->schoolUserRepository = $schoolUserRepository;
     }
