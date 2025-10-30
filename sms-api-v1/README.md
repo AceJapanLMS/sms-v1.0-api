@@ -344,7 +344,16 @@ api/changepassword
     "current_password":"xxxxxx",
     "new_password":"xyz123",
     "confirm_password":"xyz123"
-}```
+}
+```
+SUCCESS Response
+```
+{
+    "success": true,
+    "data": [],
+    "message": "Password changed successfully"
+}
+```
 ==================================
 api/logout
 http: POST
