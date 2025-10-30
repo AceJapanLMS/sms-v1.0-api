@@ -386,19 +386,20 @@ Bearer Token : "3|XLQjcPx88S1evja6GHZdYStF5x2kn5UYh5FMvaIff8664e57"
 api/teacher
 ```
 {
-"profile_image": "base64 format", 
-"first_name":"Tr. Min",
-"last_name":"Min",
-"nrc":"12/Nataka(N)9517536452,
-"birthday":"2025-10-10",
-"phone":"09852963741",
-"address","YGN",
-"teacher_level":"Founder",
-"role":"Teacher",
-"education":"BED",
-"teacher_fees":800000,
-"username":"MG",
-"password":"987654"
+    "profile_image": "base64 format", 
+    "first_name": "Tr. Min",
+    "last_name": "Min",
+    "nrc": "12/Nataka(N)9517536452",
+    "birthday": "2025-10-10",
+    "phone": "09852963741",
+    "address": "YGN",
+    "teacher_level": "Founder",
+    "role": "Teacher",
+    "education": "BED",
+    "teacher_fees": 800000,
+    "username": "MG",
+    "email": "MG@gmail.com",
+    "password": "987654"
 }
 ```
 ===========================================

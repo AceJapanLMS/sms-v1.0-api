@@ -12,6 +12,7 @@ use App\Http\Controllers\OtpController;
 use App\Http\Controllers\UserPasswordController;
 use App\Http\Controllers\SignInController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\TeacherController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -23,6 +24,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('roles', [RoleController::class, 'index']);
     Route::put('profile', [UserProfileController::class, 'update']);
     Route::post('changepassword', ChangePasswordController::class);
+    // Create teacher (secured)
+    Route::post('teacher', [TeacherController::class, 'store']);
 });
 
 // Standard REST resource routes for City

@@ -33,8 +33,7 @@ class ChangePasswordController extends Controller
             $user->save();
             return ApiResponse::sendResponse([], 'Password changed successfully');
         } catch (\Exception $e) {
-            return ApiResponse::sendResponseFailed([], 'Failed to change password'
-            );
+            return ApiResponse::sendResponseFailed([], 'Failed to change password');
         }
     }
 }
