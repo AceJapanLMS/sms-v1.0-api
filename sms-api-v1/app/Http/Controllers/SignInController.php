@@ -25,38 +25,28 @@ class SignInController extends Controller
     {
         // Rate limiting: 5 attempts per minute per IP
         $key = Str::lower($request->input('email')).'|'.$request->ip();
-        
+
         if (RateLimiter::tooManyAttempts($key, 5)) {
             $seconds = RateLimiter::availableIn($key);
-            return ApiResponse::sendResponseFailed(
-                null,
-                "Too many login attempts. Please try again in {$seconds} seconds.",
-                429
-            );
+            return ApiResponse::sendResponseFailed(null,"Too many login attempts. Please try again in {$seconds} seconds.",429);
         }
-        
         $result = $this->schoolusers->sign($request->validated());
-
         if (!isset($result['status'])) {
             RateLimiter::hit($key);
             return ApiResponse::sendResponseFailed(null, 'Unexpected error', 500);
         }
-        
         if ($result['status'] === false) {
             RateLimiter::hit($key);
             return ApiResponse::sendResponseFailed(null, $result['message'] ?? 'Login Failed', 401);
         }
-
         // Clear failed attempts on success
         RateLimiter::clear($key);
-        
         // Separate token from user data in response
         $response = [
             'user' => $result['data']['user'],
             'access_token' => $result['data']['token'],
             'token_type' => 'Bearer'
         ];
-        
         return ApiResponse::sendResponse($response, 'Login successful', 200);
     }
 
@@ -69,7 +59,6 @@ class SignInController extends Controller
         if ($request->user()) {
             $request->user()->tokens()->delete();
         }
-
-        return ApiResponse::sendResponse(null, 'Successfully logged out', 200);
+        return ApiResponse::sendResponse([], 'Successfully logged out', 200);
     }
 }

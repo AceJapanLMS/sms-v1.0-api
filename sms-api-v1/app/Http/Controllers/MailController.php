@@ -33,23 +33,19 @@ class MailController extends Controller
         }
         else {
             $schoolInfo = $this->schoolInfoRepository->getByEmail($schoolUser['email']);
-
             // update OTP and get SchoolUser instance
             $schoolUser = $this->sendOtpEmailRepository->updateSchoolUser([
                 'school_info_id' => $schoolInfo->id,
                 'email' => $schoolInfo->contact_email
             ]);
-
             // Prepare mail data
             $mailData = [
                 'title' => 'Resend OTP again to verify and complete registration process',
                 'otp' => $schoolUser->otp,
                 'school_name' => $schoolInfo->school_name
             ];
-
             // Send OTP email
             Mail::to($schoolInfo->contact_email)->send(new OtpMail($mailData));
-
             // Return response without exposing the OTP
             $schoolInfo->otp_expires_at = $schoolUser->expired_at;
             return ApiResponse::sendResponse($schoolInfo, 'OTP was sent again successfully', 200);

@@ -1,8 +1,7 @@
 php 8.3
 laravlel 11.0
 mysql 8.5
-===========================================================================================================
-api generate 
+================
 port:api/city/{1}
 HTTP Verb: GET 
 ```
@@ -19,7 +18,6 @@ HTTP Verb: GET
 }
 ```
 township api
-api generate 
 port:api/township/
 HTTP Verb: GET 
 ```
@@ -45,11 +43,9 @@ HTTP Verb: GET
 ```
 (http://127.0.0.1:8000/api/schoolinfo)
 HTTP Verb: POST
-
 Header config
 Key:value
 Accept:application/json
-
 REQUEST json body: 
 ```
 {
@@ -75,8 +71,7 @@ function name : send email as OTP to user's email
 send otp email api 
 1) send otp email for mobile register process
 2) add user email  , password and school_info_id into users table 
-3) add record school_users 
-
+3) add record school_users
 api/schoolinfo
 HTTP Verb : POST 
 Header Key:value
@@ -104,7 +99,7 @@ REQUEST JSON BODY:
 "school_name":'TOP ONE'
 }
 ```
-===========================================================================================================
+=================================================================
 //branch name : re_send_otp
 function name : verify email OTP to complate registartion process
 /api/resendotp
@@ -118,7 +113,7 @@ REQUEST JSON BODY:
     "school_name": "HI"
 }
 ```
-================================================================================================================
+================================================================
 //branch name : verify_otp_api
 function name : verify email OTP to complate registartion process 
 /api/verifyotp
@@ -136,7 +131,7 @@ REQUEST JSON BODY:
 if(check opt and email) from this Query table school_users
 then verify success 
 else verify failed 
-================================================================================================================
+===========================================================
 //branch name : define_usernewpassword_api
 function name : define user New password and store user table 
 api/setnewuserpassword
@@ -152,9 +147,9 @@ REQUEST JSON BODY:
 }
 ```
 Query table reference : school_users
-================================================================================================================
+===============================================
 //branch name : user_sign_api
-function name : sign with user name and password
+function name : sign with username and password
 api/signin
 HTTP Verb : POST
 Header Key:value
@@ -172,7 +167,30 @@ Query table reference : school_users,school_infos.is_approved=1
 select u.id,u.email,si.is_approved from school_users u
 inner join school_infos si on u.school_info_id=si.id
 where si.is_approved=1
-================================================================================================================
+RESPONSE BODY:
+```
+{
+    "success": true,
+    "data": {
+        "user": {
+            "id": 3,
+            "school_info_id": 12,
+            "email": "akog02@gmail.com",
+            "expired_at": "2025-10-30T04:03:43.000000Z",
+            "created_at": "2025-10-27T17:23:06.000000Z",
+            "updated_at": "2025-10-30T03:48:43.000000Z",
+            "is_remember_me": 0,
+            "signin_attempts": 0,
+            "is_locked": 0,
+            "is_signin_active": 0
+        },
+        "access_token": "3|XLQjcPx88S1evja6GHZdYStF5x2kn5UYh5FMvaIff8664e57",
+        "token_type": "Bearer"
+    },
+    "message": "Login successful"
+}
+```
+=======================================
 branch name: dashboard_noticeboard_api
 function name: dashboard/noticeboard for admin user
 secured api
@@ -228,7 +246,7 @@ RESPONSE JSON BODY:
 }
 ```
 Query table reference : notices 
-===========================================================================================================
+===================================
 branch name: dashboard_myschool_api
 function name: dashboard/my school for admin user
 secured api
@@ -237,7 +255,7 @@ HTTP Verb : GET
 Header Key:value
 Accept:application/json
 RESPONSE JSON BODY: 
-===========================================================================================================
+==============================
 branch name: dashboard_attendance_api
 function name: dashboard/attendance for admin user
 secured api
@@ -246,7 +264,7 @@ HTTP Verb : GET
 Header Key:value
 Accept:application/json
 RESPONSE JSON BODY: 
-===========================================================================================================
+==============================
 branch name: dashboard_grading_api
 function name: dashboard/grading for admin user
 secured api
@@ -255,23 +273,101 @@ HTTP Verb : GET
 Header Key:value
 Accept:application/json
 RESPONSE JSON BODY: 
-===========================================================================================================
+===========================
+secured api
 api/roles
-===========================================================================================================
-api/userProfile
-===========================================================================================================
-api/forgotpassword
-===========================================================================================================
-api/changepassword
+http: GET
+Header information
+Key:Accept
+Value:application/json
+Authorization type:
+Bearer Token : <Token>
+```
 {
+"success": true,
+"data": [
+{
+"id": 1,
+"name": "Admin",
+"guard_name": "web"
+},
+{
+"id": 2,
+"name": "Student",
+"guard_name": "web"
+}
+],
+"message": "Roles retrieved successfully"
+}
+```
+======================
+api/userProfile
+http: GET
+Header information
+Key:Accept
+Value:application/json
+Authorization type:
+Bearer Token : <Token>
+```
+{
+    "success": true,
+    "data": {
+        "id": 3,
+        "school_info_id": 12,
+        "email": "akog02@gmail.com",
+        "expired_at": "2025-10-30T04:03:43.000000Z",
+        "created_at": "2025-10-27T17:23:06.000000Z",
+        "updated_at": "2025-10-30T03:48:43.000000Z",
+        "is_remember_me": 0,
+        "signin_attempts": 0,
+        "is_locked": 0,
+        "is_signin_active": 0
+    },
+    "message": "Profile retrieved"
+}
+```
+====================
+api/forgotpassword
+http: GET
+Header information
+Key:Accept
+Value:application/json
+Authorization type:
+Bearer Token : <Token>
+
+==============================
+api/changepassword
+```
+{
+    "id":1,
+    "email":"akog02@gmaill.com",
     "current_password":"xxxxxx",
     "new_password":"xyz123",
     "confirm_password":"xyz123"
-}
-===========================================================================================================
+}```
+==================================
 api/logout
-===========================================================================================================
+http: POST
+Header information
+Key:Accept
+Value:application/json
+Authorization type:
+Bearer Token : <Token>
+```
+{
+    "success": true,
+    "data": [],
+    "message": "Successfully logged out"
+}
+```
+======================
 secured api
+http: POST
+Header information
+Key:Accept
+Value:application/json
+Authorization type:
+Bearer Token : <Token>
 api/teacher
 ```
 {
@@ -289,6 +385,6 @@ api/teacher
 "password":"987654"
 }
 ```
-===========================================================================================================
+===========================================
 web app side
 enable web user for mobile (admin control)

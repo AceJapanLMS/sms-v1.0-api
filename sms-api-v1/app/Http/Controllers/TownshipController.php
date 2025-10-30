@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Interfaces\TownshipRepositoryInterface;
 use App\Responses\ApiResponse;
 use Illuminate\Http\JsonResponse;
-
 use Illuminate\Http\Request;
 
 class TownshipController extends Controller
@@ -18,6 +17,7 @@ class TownshipController extends Controller
     {
         $this->townships = $townships;
     }
+
     //api/township
     public function index(): JsonResponse
     {
@@ -35,7 +35,7 @@ class TownshipController extends Controller
     // api/township/city_id/{city_id}
     public function getByCity($city_id): JsonResponse
     {
-    // Call repository method to get filtered data
+        // Call repository method to get filtered data
         $data = $this->townships->getByCity($city_id);
         return ApiResponse::sendResponse($data, '', 200);
     }

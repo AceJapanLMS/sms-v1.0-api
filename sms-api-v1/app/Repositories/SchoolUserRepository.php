@@ -75,7 +75,7 @@ class SchoolUserRepository implements SchoolUserRepositoryInterface
             }
 
             // Ensure the associated school is approved
-            $schoolInfo = \App\Models\SchoolInfo::find($user->school_info_id);
+            $schoolInfo = SchoolInfo::find($user->school_info_id);
             if (! $schoolInfo || $schoolInfo->is_approved != 1) {
                 return [
                     'status' => false,

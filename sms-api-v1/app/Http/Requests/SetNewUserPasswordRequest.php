@@ -10,9 +10,9 @@ class SetNewUserPasswordRequest extends FormRequest{
     }
     public function rules(){
         return [
-            'email'             => 'required|string|max:255',
-            'password'          => 'required|string|max:255',
-            'confirm_password'  => 'required|string|max:255',
+            'email'=> 'required|string|max:255',
+            'password'=> 'required|string|max:255',
+            'confirm_password'=> 'required|string|max:255',
         ];
     }
 

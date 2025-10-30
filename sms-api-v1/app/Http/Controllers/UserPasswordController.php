@@ -11,6 +11,7 @@ use App\Responses\ApiResponse;
 class UserPasswordController extends Controller
 {
     protected SchoolUserRepositoryInterface $schoolusers;
+    
     public function __construct(SchoolUserRepositoryInterface $schoolusers){
         $this->schoolusers = $schoolusers;
     }

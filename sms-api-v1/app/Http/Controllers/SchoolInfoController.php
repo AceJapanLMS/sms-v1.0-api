@@ -20,6 +20,7 @@ class SchoolInfoController extends Controller
         $this->schoolinfos = $schoolinfos;
         $this->sendOtpEmailRepository = $sendOtpEmailRepository;
     }
+
     /**
      * Display a listing of the resource.
      */
@@ -35,28 +36,23 @@ class SchoolInfoController extends Controller
     public function store(StoreSchoolInfoRequest $request): JsonResponse
     {
         $result = $this->schoolinfos->create($request->validated());
-        
         // Check for validation errors from repository
         if (is_array($result) && isset($result['error'])) {
             return ApiResponse::sendResponseFailed(null, $result['error']);
         }
-        
         // Save OTP and get SchoolUser instance
         $schoolUser = $this->sendOtpEmailRepository->saveSchoolUser([
             'school_info_id' => $result->id,
             'email' => $result->contact_email
         ]);
-        
         // Prepare mail data
         $mailData = [
             'title' => 'Verify OTP for the school registration process',
             'otp' => $schoolUser->otp,
             'school_name' => $result->school_name
         ];
-        
         // Send OTP email
         Mail::to($result->contact_email)->send(new OtpMail($mailData));
-        
         // Return response without exposing the OTP
         $result->otp_expires_at = $schoolUser->expired_at;
         return ApiResponse::sendResponse($result, 'School Info Created and OTP sent to email', 201);

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
@@ -15,9 +16,10 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-// Protected user profile routes
+// secured apis routes
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('profile', [UserProfileController::class, 'show']);
+    Route::get('roles', [RoleController::class, 'index']);
     Route::put('profile', [UserProfileController::class, 'update']);
 });
 
