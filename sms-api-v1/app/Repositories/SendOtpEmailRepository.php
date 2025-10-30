@@ -12,7 +12,7 @@ class SendOtpEmailRepository implements SendOtpEmailRepositoryInterface
     {
         // Generate a random 6-digit OTP
         $otp = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
-        
+
         // Create SchoolUser with OTP
         return SchoolUser::create([
             'school_info_id' => $data['school_info_id'],
@@ -22,4 +22,21 @@ class SendOtpEmailRepository implements SendOtpEmailRepositoryInterface
         ]);
     }
 
+    public function updateSchoolUser(array $data)
+    {
+        // Generate a random 6-digit OTP
+        $otp = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+
+        // Find the existing user and update their OTP
+        $user = SchoolUser::where('email', $data['email'])->first();
+        if (!$user) {
+            return null;
+        }
+
+        $user->otp = $otp;
+        $user->expired_at = Carbon::now()->addMinutes(15); // OTP expires in 15 minutes
+        $user->save();
+
+        return $user;
+    }
 }
