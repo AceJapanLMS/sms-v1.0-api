@@ -29,7 +29,7 @@ class MailController extends Controller
     {
         $schoolUser=$this->schoolUserRepository->getUserByEmail($request->validated());
         if ($schoolUser['status'] === false) {
-            return ApiResponse::sendResponseFailed(null, $schoolUser['message'], 401);
+            return ApiResponse::sendResponseFailed(null, $schoolUser['message'], 404);
         }
         else {
             $schoolInfo = $this->schoolInfoRepository->getByEmail($schoolUser['email']);
@@ -42,7 +42,7 @@ class MailController extends Controller
 
             // Prepare mail data
             $mailData = [
-                'title' => 'Verify OTP for the school registration process',
+                'title' => 'Resend OTP again to verify and complete registration process',
                 'otp' => $schoolUser->otp,
                 'school_name' => $schoolInfo->school_name
             ];

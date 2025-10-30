@@ -138,8 +138,8 @@ Accept:application/json
 REQUEST JSON BODY:
 ```
 {
-"email" : "user1@gmail.com",
-"school_name":'TOP ONE'
+    "email": "akog02@gmail.com",
+    "school_name": "HI"
 }
 ```
 ================================================================================================================
