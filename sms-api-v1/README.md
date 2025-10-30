@@ -41,7 +41,7 @@ HTTP Verb: GET
 ]
 }
 ```
-(http://127.0.0.1:8000/api/schoolinfo)
+api/schoolinfo
 HTTP Verb: POST
 Header config
 Key:value
@@ -150,7 +150,7 @@ Query table reference : school_users
 ===============================================
 //branch name : user_sign_api
 function name : sign with username and password
-api/signin
+api/login
 HTTP Verb : POST
 Header Key:value
 Accept:application/json
@@ -281,7 +281,7 @@ Header information
 Key:Accept
 Value:application/json
 Authorization type:
-Bearer Token : <Token>
+Bearer Token : "3|XLQjcPx88S1evja6GHZdYStF5x2kn5UYh5FMvaIff8664e57"
 ```
 {
 "success": true,
@@ -307,7 +307,7 @@ Header information
 Key:Accept
 Value:application/json
 Authorization type:
-Bearer Token : <Token>
+Bearer Token : "3|XLQjcPx88S1evja6GHZdYStF5x2kn5UYh5FMvaIff8664e57"
 ```
 {
     "success": true,
@@ -337,6 +337,12 @@ Bearer Token : <Token>
 
 ==============================
 api/changepassword
+http: POST
+Header information
+Key:Accept
+Value:application/json
+Authorization type:
+Bearer Token : "3|XLQjcPx88S1evja6GHZdYStF5x2kn5UYh5FMvaIff8664e57"
 ```
 {
     "id":1,
@@ -361,7 +367,7 @@ Header information
 Key:Accept
 Value:application/json
 Authorization type:
-Bearer Token : <Token>
+Bearer Token : "3|XLQjcPx88S1evja6GHZdYStF5x2kn5UYh5FMvaIff8664e57"
 ```
 {
     "success": true,
@@ -376,14 +382,15 @@ Header information
 Key:Accept
 Value:application/json
 Authorization type:
-Bearer Token : <Token>
+Bearer Token : "3|XLQjcPx88S1evja6GHZdYStF5x2kn5UYh5FMvaIff8664e57"
 api/teacher
 ```
 {
 "profile_image": "base64 format", 
-"name":"Tr. Min Min",
+"first_name":"Tr. Min",
+"last_name":"Min",
 "nrc":"12/Nataka(N)9517536452,
-"brithday":"2025-10-10",
+"birthday":"2025-10-10",
 "phone":"09852963741",
 "address","YGN",
 "teacher_level":"Founder",
