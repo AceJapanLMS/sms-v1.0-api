@@ -15,7 +15,7 @@ class SchoolUserRepository implements SchoolUserRepositoryInterface
     {
         try {
             $user = SchoolUser::where('email', $data['email'])->first();
-            //Log::info('OTP verify query result:', ['data' => $user]);
+            Log::info('OTP verify query result:', ['data' => $user]);
             if(!$user){
                 return false;
             }
@@ -40,10 +40,20 @@ class SchoolUserRepository implements SchoolUserRepositoryInterface
 
     public function setNewPassword(array $data){
         try{
-            $user = SchoolUser::where('email',$data['email'])->first();
+            $user = SchoolUser::where('email', $data['email'])->first();
+            Log::info('result:', ['data' => $user]);
+
             if(!$user){
                 return ['status' => false, 'message' => 'User Not Found'];
             }
+
+            if ($data['password'] !== $data['confirm_password']) {
+                return [
+                    'status' => false,
+                    'message' => 'Password and confirm password do not match'
+                ];
+            }
+
             $user->password = Hash::make($data['password']);
             $user->save();
             return ['status' => true,'data' => $user];
@@ -94,5 +104,14 @@ class SchoolUserRepository implements SchoolUserRepositoryInterface
             report($e);
             return false;
         }
+    }
+
+    public function getUserByEmail(array $data)
+    {
+        $user = SchoolUser::where('email', $data['email'])->first();
+        if(!$user){
+            return ['status' => false, 'message' => 'User Not Found'];
+        }
+        return $user;
     }
 }

@@ -56,4 +56,9 @@ class SchoolInfoRepository implements SchoolInfoRepositoryInterface {
     public function delete($id){
         SchoolInfo::destory($id);
     }
+
+    public function getByEmail($email)
+    {
+        return SchoolInfo::where('contact_email', $email)->first();
+    }
 }

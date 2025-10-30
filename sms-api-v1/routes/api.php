@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
@@ -22,4 +23,5 @@ Route::get('township/city_id/{city_id}', [TownshipController::class, 'getbycity'
 Route::apiResource('schoolinfo', SchoolInfoController::class);
 Route::post('verifyotp', [OtpController::class, 'store']);
 Route::post('setnewuserpassword',[UserPasswordController::class, 'setNewUserPassword']);
-Route::post('sign',[SignInController::class, 'sign']);
+Route::post('signin',[SignInController::class, 'sign']);
+Route::post('resendotp', [MailController::class, 'resendOTP']);

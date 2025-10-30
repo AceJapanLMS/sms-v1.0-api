@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateCityRequest;
 use App\Interfaces\CityRepositoryInterface;
 use App\Responses\ApiResponse;
 use Illuminate\Http\JsonResponse;
-
+use Illuminate\Support\Facades\Log;
 class CityController extends Controller
 {
     protected CityRepositoryInterface $cities;
@@ -20,6 +20,7 @@ class CityController extends Controller
     public function index(): JsonResponse
     {
         $data = $this->cities->getAll();
+        Log::info('OTP verify query result:');
         return ApiResponse::sendResponse($data, '', 200);
     }
 
