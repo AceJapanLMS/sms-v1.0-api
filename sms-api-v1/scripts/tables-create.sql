@@ -32,3 +32,4 @@ CREATE TABLE school_users(
 ALTER TABLE school_users ADD is_remember_me TINYINT DEFAULT(0);
 ALTER TABLE  school_users ADD signin_attempts INT DEFAULT(0);
 ALTER TABLE  school_users ADD is_locked BIT DEFAULT(FALSE);
+ALTER TABLE  school_users ADD is_signin_active BIT DEFAULT(FALSE);
