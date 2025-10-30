@@ -105,4 +105,13 @@ class SchoolUserRepository implements SchoolUserRepositoryInterface
             return false;
         }
     }
+
+    public function getUserByEmail(array $data)
+    {
+        $user = SchoolUser::where('email', $data['email'])->first();
+        if(!$user){
+            return ['status' => false, 'message' => 'User Not Found'];
+        }
+        return $user;
+    }
 }
