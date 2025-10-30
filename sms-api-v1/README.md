@@ -128,6 +128,20 @@ REQUEST JSON BODY:
 "school_name":'TOP ONE'
 }
 ```
+========================
+//branch name : re_send_otp
+function name : verify email OTP to complate registartion process
+/api/resendotp
+HTTP Verb : POST
+Header Key:value
+Accept:application/json
+REQUEST JSON BODY:
+```
+{
+"email" : "user1@gmail.com",
+"school_name":'TOP ONE'
+}
+```
 ================================================================================================================
 //branch name : verify_otp_api
 function name : verify email OTP to complate registartion process 
