@@ -389,6 +389,7 @@ api/teacher
     "profile_image": "base64 format", 
     "first_name": "Tr. Min",
     "last_name": "Min",
+    "gender":"m",
     "nrc": "12/Nataka(N)9517536452",
     "birthday": "2025-10-10",
     "phone": "09852963741",
@@ -398,7 +399,6 @@ api/teacher
     "education": "BED",
     "teacher_fees": 800000,
     "username": "MG",
-    "email": "MG@gmail.com",
     "password": "987654"
 }
 ```
