@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\SchoolUserRepositoryInterface;
 use App\Http\Requests\SignRequest;
+use App\Models\SchoolUser;
 use App\Responses\ApiResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -51,12 +52,16 @@ class SignInController extends Controller
     }
 
     /**
-     * Logout the current user (revoke token).
+     * Logout the current user (revoke token) and reset the sign_in_attempts =0 when user logout..
      */
     public function logout(Request $request): JsonResponse
     {
         // Revoke all tokens...
         if ($request->user()) {
+            //resetting the signed attempts when uer logout from the system.
+            $user = SchoolUser::where('email', $request->user()->getEmailForVerification())->first();
+            $user->signin_attempts=0;
+            $user->save();
             $request->user()->tokens()->delete();
         }
         return ApiResponse::sendResponse([], 'Successfully logged out', 200);

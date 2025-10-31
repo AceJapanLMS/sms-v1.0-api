@@ -19,6 +19,7 @@ class SchoolUser extends Authenticatable
 		'otp',
         'password',
         'expired_at',
+        'is_locked'
     ];
 
     protected $hidden = [
