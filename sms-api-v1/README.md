@@ -328,13 +328,11 @@ Bearer Token : "3|XLQjcPx88S1evja6GHZdYStF5x2kn5UYh5FMvaIff8664e57"
 ```
 ====================
 api/forgotpassword
-http: GET
-Header information
-Key:Accept
-Value:application/json
-Authorization type:
-Bearer Token : <Token>
-
+ (3) steps to make api call
+1) api/resendotp 
+2) api/verifyotp
+3) api/setnewuserpassword
+4) api/login
 ==============================
 api/changepassword
 http: POST

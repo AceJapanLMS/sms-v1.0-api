@@ -24,14 +24,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('roles', [RoleController::class, 'index']);
     Route::put('profile', [UserProfileController::class, 'update']);
     Route::post('changepassword', ChangePasswordController::class);
-    // Create teacher (secured)
     Route::post('teacher', [TeacherController::class, 'store']);
 });
 
 // Standard REST resource routes for City
 Route::apiResource('city', CityController::class);//api/city
-//Standard REST resource routes for Township
-//api/township
 Route::apiResource('township', TownshipController::class);
 Route::get('township/city_id/{city_id}', [TownshipController::class, 'getbycity']);
 Route::apiResource('schoolinfo', SchoolInfoController::class);

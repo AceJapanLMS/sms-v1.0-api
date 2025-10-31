@@ -13,6 +13,8 @@ class SignRequest extends FormRequest{
         return [
             'email'=> 'required|string|max:255',
             'password'=> 'required|string|max:255',
+            'is_remember_me'=> 'required|boolean',
+            'signin_attempts'=> 'required|integer',
         ];
     }
 }
